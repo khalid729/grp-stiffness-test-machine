@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Al Muhaideb National Brand Colors */
+    --brand-blue: 200 65% 25%;
+    --brand-teal: 170 60% 45%;
+    --brand-blue-light: 200 55% 35%;
+    
+    /* Industrial Control Interface Colors */
+    --background: 200 15% 96%;
+    --foreground: 200 30% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 200 30% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 30% 15%;
+
+    /* Primary - Brand Blue */
+    --primary: 200 65% 28%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 200 20% 90%;
+    --secondary-foreground: 200 30% 15%;
+
+    --muted: 200 15% 92%;
+    --muted-foreground: 200 16% 47%;
+
+    --accent: 170 50% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Status Colors */
+    --success: 170 65% 40%;
+    --success-foreground: 0 0% 100%;
+    
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 0%;
+    
+    --info: 200 70% 50%;
+    --info-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 20% 85%;
+    --input: 200 20% 85%;
+    --ring: 170 60% 45%;
+
+    --radius: 0.5rem;
+
+    /* Sidebar - Brand Colors */
+    --sidebar-background: 200 65% 22%;
+    --sidebar-foreground: 200 40% 98%;
+    --sidebar-primary: 170 60% 50%;
+    --sidebar-primary-foreground: 200 65% 20%;
+    --sidebar-accent: 200 55% 30%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 200 50% 28%;
+    --sidebar-ring: 170 60% 50%;
+
+    /* Industrial-specific tokens */
+    --status-idle: 200 16% 47%;
+    --status-starting: 200 70% 50%;
+    --status-testing: 38 92% 50%;
+    --status-target: 170 65% 40%;
+    --status-returning: 200 70% 50%;
+    --status-complete: 170 65% 40%;
+    --status-error: 0 84% 60%;
+
+    --indicator-on: 170 65% 40%;
+    --indicator-off: 200 16% 70%;
+    --indicator-error: 0 84% 60%;
+
+    /* Chart colors */
+    --chart-1: 200 65% 28%;
+    --chart-2: 170 65% 40%;
+    --chart-3: 38 92% 50%;
+    --chart-4: 0 84% 60%;
+    --chart-5: 200 70% 50%;
+
+    /* Fonts */
+    --font-sans: 'Inter', sans-serif;
+    --font-arabic: 'Cairo', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Emergency Stop */
+    --emergency: 0 84% 50%;
+    --emergency-glow: 0 100% 60%;
+  }
+
+  .dark {
+    /* Al Muhaideb National Brand Colors - Dark Mode */
+    --brand-blue: 200 55% 40%;
+    --brand-teal: 170 55% 50%;
+    --brand-blue-light: 200 50% 50%;
+    
+    --background: 200 25% 10%;
+    --foreground: 200 40% 98%;
+
+    --card: 200 25% 14%;
+    --card-foreground: 200 40% 98%;
+
+    --popover: 200 25% 14%;
+    --popover-foreground: 200 40% 98%;
+
+    --primary: 200 60% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 200 32% 22%;
+    --secondary-foreground: 200 40% 98%;
+
+    --muted: 200 32% 22%;
+    --muted-foreground: 200 20% 65%;
+
+    --accent: 170 50% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --success: 170 60% 45%;
+    --success-foreground: 0 0% 100%;
+    
+    --warning: 38 85% 55%;
+    --warning-foreground: 0 0% 0%;
+    
+    --info: 200 75% 60%;
+    --info-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 200 40% 98%;
+
+    --border: 200 32% 25%;
+    --input: 200 32% 25%;
+    --ring: 170 55% 50%;
+
+    --sidebar-background: 200 30% 8%;
+    --sidebar-foreground: 200 40% 98%;
+    --sidebar-primary: 170 55% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 200 32% 18%;
+    --sidebar-accent-foreground: 200 40% 98%;
+    --sidebar-border: 200 32% 18%;
+    --sidebar-ring: 170 60% 55%;
+
+    --status-idle: 200 20% 65%;
+    --status-starting: 200 75% 60%;
+    --status-testing: 38 85% 55%;
+    --status-target: 170 60% 45%;
+    --status-returning: 200 75% 60%;
+    --status-complete: 170 60% 45%;
+    --status-error: 0 70% 55%;
+
+    --indicator-on: 170 60% 45%;
+    --indicator-off: 200 20% 40%;
+    --indicator-error: 0 70% 55%;
+  }
+
+  [dir="rtl"] {
+    font-family: var(--font-arabic), var(--font-sans);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: var(--font-sans);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer components {
+  /* Status indicator animations */
+  .status-pulse {
+    animation: pulse-status 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-status {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  .status-blink {
+    animation: blink-status 0.5s ease-in-out infinite;
+  }
+
+  @keyframes blink-status {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+
+  /* Emergency button glow */
+  .emergency-glow {
+    box-shadow: 0 0 20px hsl(var(--emergency-glow) / 0.5),
+                0 0 40px hsl(var(--emergency-glow) / 0.3);
+    animation: emergency-pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes emergency-pulse {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--emergency-glow) / 0.5),
+                  0 0 40px hsl(var(--emergency-glow) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 30px hsl(var(--emergency-glow) / 0.7),
+                  0 0 60px hsl(var(--emergency-glow) / 0.5);
+    }
+  }
+
+  /* Industrial card styling */
+  .industrial-card {
+    @apply bg-card border border-border rounded-lg shadow-sm;
+    background: linear-gradient(145deg, 
+      hsl(var(--card)) 0%, 
+      hsl(var(--muted) / 0.3) 100%);
+  }
+
+  /* Value display styling */
+  .value-display {
+    @apply font-mono text-2xl font-semibold tracking-tight;
+  }
+
+  .value-unit {
+    @apply text-sm font-normal text-muted-foreground ml-1;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
