@@ -21,6 +21,11 @@ class CommandResponse(BaseModel):
     message: str
 
 
+class ModeResponse(BaseModel):
+    remote_mode: bool
+    mode: str  # "local" or "remote"
+
+
 def _check_service():
     if command_service is None:
         raise HTTPException(status_code=503, detail="Command service not initialized")
@@ -188,4 +193,39 @@ async def unlock_all_clamps():
     return CommandResponse(
         success=success,
         message="All clamps unlocked" if success else "Failed to unlock clamps"
+    )
+
+
+# ========== Mode Control ==========
+
+@router.get("/mode", response_model=ModeResponse)
+async def get_mode():
+    """Get current control mode"""
+    _check_service()
+    remote_mode = command_service.get_remote_mode()
+    return ModeResponse(
+        remote_mode=remote_mode,
+        mode="remote" if remote_mode else "local"
+    )
+
+
+@router.post("/mode/local", response_model=CommandResponse)
+async def set_local_mode():
+    """Switch to Local mode (Physical buttons)"""
+    _check_service()
+    success = command_service.set_remote_mode(False)
+    return CommandResponse(
+        success=success,
+        message="Switched to Local mode" if success else "Failed to switch mode"
+    )
+
+
+@router.post("/mode/remote", response_model=CommandResponse)
+async def set_remote_mode():
+    """Switch to Remote mode (Web interface)"""
+    _check_service()
+    success = command_service.set_remote_mode(True)
+    return CommandResponse(
+        success=success,
+        message="Switched to Remote mode" if success else "Failed to switch mode"
     )

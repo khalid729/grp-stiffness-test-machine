@@ -17,6 +17,7 @@ export interface LiveData {
   start_button: boolean;
   load_cell_raw: number;
   actual_position: number;
+  remote_mode: boolean;
   connected: boolean;
 }
 
@@ -97,4 +98,10 @@ export interface ConnectionStatus {
   connected: boolean;
   ip: string;
   message: string;
+}
+
+// Mode response
+export interface ModeResponse {
+  remote_mode: boolean;
+  mode: 'local' | 'remote';
 }

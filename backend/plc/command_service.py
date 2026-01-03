@@ -24,6 +24,10 @@ class CommandService:
     # DB3 - Jog Velocity offset
     DB3_JOG_VELOCITY = 2
 
+    # DB3 - Remote Mode
+    DB3_REMOTE_MODE_BYTE = 25
+    DB3_REMOTE_MODE_BIT = 0
+
     def __init__(self, plc: PLCConnector):
         self.plc = plc
 
@@ -172,3 +176,28 @@ class CommandService:
         success &= self.unlock_lower()
         logger.info("All clamps unlocked")
         return success
+
+    # ========== Mode Control ==========
+
+    def set_remote_mode(self, is_remote: bool) -> bool:
+        """Set control mode - DB3.DBX25.0
+
+        Args:
+            is_remote: True for Remote mode (Web interface), False for Local mode (Physical buttons)
+        """
+        if not self._check_connection():
+            return False
+        result = self.plc.write_bool(3, self.DB3_REMOTE_MODE_BYTE, self.DB3_REMOTE_MODE_BIT, is_remote)
+        mode_str = "Remote" if is_remote else "Local"
+        logger.info(f"Control mode set to: {mode_str}")
+        return result
+
+    def get_remote_mode(self) -> bool:
+        """Get current control mode - DB3.DBX25.0
+
+        Returns:
+            True if Remote mode, False if Local mode
+        """
+        if not self.plc.connected:
+            return False
+        return self.plc.read_bool(3, self.DB3_REMOTE_MODE_BYTE, self.DB3_REMOTE_MODE_BIT) or False

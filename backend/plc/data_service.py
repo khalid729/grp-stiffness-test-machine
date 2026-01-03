@@ -44,6 +44,9 @@ class DataService:
     DB2_TEST_STATUS = 22
     DB2_TEST_PASSED = 24
 
+    # DB3 - Control Mode
+    DB3_REMOTE_MODE = (25, 0)  # DB3.DBX25.0 (False=Local, True=Remote)
+
     # Load cell scaling constants
     LOAD_CELL_MAX_RAW = 27648
     LOAD_CELL_MAX_FORCE = 200.0  # kN
@@ -92,6 +95,10 @@ class DataService:
                 "test_passed": self.plc.read_bool(2, self.DB2_TEST_PASSED, 0) or False,
                 # Position from DB2 or calculated
                 "actual_position": self.plc.read_real(2, self.DB2_ACTUAL_DEFLECTION) or 0.0,
+                # ═══════════════════════════════════════════════════════════
+                # CONTROL MODE
+                # ═══════════════════════════════════════════════════════════
+                "remote_mode": self.plc.read_bool(3, *self.DB3_REMOTE_MODE) or False,
                 # Connection status
                 "connected": True,
             }
@@ -119,6 +126,7 @@ class DataService:
             "start_button": False,
             "load_cell_raw": 0,
             "actual_position": 0.0,
+            "remote_mode": False,
             "connected": False,
         }
 

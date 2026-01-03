@@ -20,6 +20,7 @@ const defaultLiveData: LiveData = {
   start_button: false,
   load_cell_raw: 0,
   actual_position: 0,
+  remote_mode: false,
   connected: false,
 };
 
