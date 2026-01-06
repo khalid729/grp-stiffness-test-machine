@@ -1,5 +1,5 @@
 import snap7
-from snap7.client import Areas
+from snap7.client import Area as Areas
 from snap7.util import get_real, set_real, get_int, get_bool, set_bool
 import threading
 import logging
